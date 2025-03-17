@@ -4,7 +4,7 @@ import { calculateOutput, updateInput, clear } from "../store/slice";
 import { RootState } from "../store/store";
 
 
-const Button: React.FC<{ title: string; btnColor: string }> = ({ title, btnColor }) => {
+const Button: React.FC<{ title: string; btnColor: string | undefined }> = ({ title, btnColor }) => {
     const dispatch = useDispatch();
     const currentInput = useSelector((state: RootState) => state.calculator.inputString);
     const clickHandler = () => {
@@ -19,8 +19,8 @@ const Button: React.FC<{ title: string; btnColor: string }> = ({ title, btnColor
         }
     }
 
-    return <div className="bg-primary border border-gray-600 py-3 sm:w-[5vw] flex justify-center items-center rounded-xl shadow shadow-gray-600">
-        <h2 className={`text-2xl font-semibold text-${btnColor} cursor-pointer`} onClick={clickHandler}>{title}</h2>
+    return <div className="dark:bg-primary border border-gray-600 py-3 sm:w-[5vw] flex justify-center items-center rounded-xl shadow shadow-gray-600">
+        <h2 className={`text-2xl font-semibold ${btnColor !== 'gray-300' ? 'text-btn-green' : 'dark:text-gray-300'} cursor-pointer`} onClick={clickHandler}>{title}</h2>
     </div>
 }
 
